@@ -18,7 +18,7 @@ function FormatDay(date){
 init();
 
 function init(){
-    //Get stored cities from localStorage
+    
     //Parsing the JSON string to an object
     var storedCities = JSON.parse(localStorage.getItem("cities"));
 
@@ -26,7 +26,14 @@ function init(){
     if (storedCities !== null) {
         cities = storedCities;
       }
-    // Render cities to the DOM
+   
     renderCities();
-    // console.log(cities);
+    
 }
+
+//Function StoreCities()
+function storeCities(){
+    // Stringify and set "cities" key in localStorage to cities array
+   localStorage.setItem("cities", JSON.stringify(cities));
+   console.log(localStorage);
+ }
