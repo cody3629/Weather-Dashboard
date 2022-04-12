@@ -14,3 +14,19 @@ function FormatDay(date){
         (day<10 ? '0' : '') + day;
     return dayOutput;
 }
+
+init();
+
+function init(){
+    //Get stored cities from localStorage
+    //Parsing the JSON string to an object
+    var storedCities = JSON.parse(localStorage.getItem("cities"));
+
+    // If cities were retrieved from localStorage, update the cities array to it
+    if (storedCities !== null) {
+        cities = storedCities;
+      }
+    // Render cities to the DOM
+    renderCities();
+    // console.log(cities);
+}
