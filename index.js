@@ -37,3 +37,26 @@ function storeCities(){
    localStorage.setItem("cities", JSON.stringify(cities));
    console.log(localStorage);
  }
+
+ function renderCities() {
+    cityList.empty();
+    
+    // Render a new li for each city
+    for (var i = 0; i < cities.length; i++) {
+      var city = cities[i];
+      
+      var li = $("<li>").text(city);
+      li.attr("id","listC");
+      li.attr("data-city", city);
+      li.attr("class", "list-group-item");
+      console.log(li);
+      cityList.prepend(li);
+    }
+    //Get Response weather for the first city only
+    if (!city){
+        return
+    } 
+    else{
+        getResponseWeather(city)
+    };
+}   
