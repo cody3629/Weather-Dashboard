@@ -78,3 +78,26 @@ $("#add-city").on("click", function(event){
 storeCities();
 renderCities();
 });
+
+function getResponseWeather(cityName){
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +cityName+ "&appid=" + key; 
+
+    //Clear content of today-weather
+    $("#today-weather").empty();
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+        
+      // Create a new table row element
+      cityTitle = $("<h3>").text(response.name + " "+ FormatDay());
+      $("#today-weather").append(cityTitle);
+      var TempetureToNum = parseInt((response.main.temp)* 9/5 - 459);
+      var cityTemperature = $("<p>").text("Tempeture: "+ TempetureToNum + " °F");
+      $("#today-weather").append(cityTemperature);
+      var cityHumidity = $("<p>").text("Humidity: "+ response.main.humidity + " %");
+      $("#today-weather").append(cityHumidity);
+      var cityWindSpeed = $("<p>").text("Wind Speed: "+ response.wind.speed + " MPH");
+      $("#today-weather").append(cityWindSpeed);
+      var CoordLon = response.coord.lon;
+      var CoordLat = response.coord.lat;
